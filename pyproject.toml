@@ -1,0 +1,11 @@
+[project]
+name = "esp32-espresso"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "atopile>=0.12.4",
+    "circuit-synth>=0.12.1",
+    "kikit>=1.7.2",
+]

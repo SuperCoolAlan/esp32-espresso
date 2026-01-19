@@ -1,0 +1,129 @@
+#pragma experiment("BRIDGE_CONNECT")
+"""
+ESP32-S3 PID Controller for Rancilio Silvia Espresso Machine
+
+Features:
+- MAX31855 K-type thermocouple for boiler temperature
+- Control output for external panel-mount SSR (e.g., Fotek SSR-25DA 25A)
+- Pressure sensor input with voltage divider (5V -> 3.3V)
+- Status LEDs (OK, Heating, Error)
+- 5V input with 3.3V LDO regulation
+- Screw terminal connectors for all external connections
+
+Note: Use an external panel-mount SSR with heatsink for the AC heater.
+      This provides better thermal management for 1000-1500W loads.
+"""
+
+import ElectricPower, Resistor, Capacitor
+
+from "components/basics.ato" import LDO_3V3, SSR_Driver
+from "components/basics.ato" import LEDIndicatorGreen, LEDIndicatorOrange, LEDIndicatorRed
+from "components/basics.ato" import PowerConnector, ThermocoupleConnector, SSRControlConnector, SensorConnector
+from "components/esp32s3.ato" import ESP32S3Module
+from "components/max31855.ato" import MAX31855Module
+
+
+module PIDController:
+    """Main PID controller module for espresso machine"""
+
+    # ===== POWER RAILS =====
+    power_5v = new ElectricPower
+    power_3v3 = new ElectricPower
+
+    # Voltage assertions for safety checks
+    assert power_5v.voltage within 5V +/- 10%
+    assert power_3v3.voltage within 3.3V +/- 5%
+
+    # ===== POWER INPUT CONNECTOR =====
+    j_power = new PowerConnector
+    j_power.power ~ power_5v
+
+    # ===== VOLTAGE REGULATOR =====
+    # LDO_3V3 includes input/output caps internally
+    regulator = new LDO_3V3
+    regulator.power_in ~ power_5v
+    regulator.power_out ~ power_3v3
+
+    # ===== ESP32-S3 MODULE =====
+    # Includes EN circuit, boot pullup, and decoupling
+    mcu = new ESP32S3Module
+    mcu.power ~ power_3v3
+
+    # ===== THERMOCOUPLE INTERFACE =====
+    thermocouple = new MAX31855Module
+    thermocouple.power ~ power_3v3
+
+    # SPI connections to ESP32
+    thermocouple.spi.sck ~ mcu.spi_clk
+    thermocouple.spi.miso ~ mcu.spi_miso
+    thermocouple.spi.cs ~ mcu.spi_cs
+
+    # Thermocouple connector
+    j_tc = new ThermocoupleConnector
+    j_tc.tc_plus ~ thermocouple.tc_plus
+    j_tc.tc_minus ~ thermocouple.tc_minus
+
+    # ===== EXTERNAL SSR CONTROL =====
+    # Transistor driver for external panel-mount SSR (e.g., Fotek SSR-25DA)
+    # External SSR handles the AC heater switching with proper heatsinking
+    ssr = new SSR_Driver
+    ssr.power_3v3 ~ power_3v3
+    ssr.power_5v ~ power_5v
+    ssr.ctrl ~ mcu.gpio4
+
+    # SSR control output connector (connects to external SSR input)
+    j_ssr = new SSRControlConnector
+    j_ssr.ssr_pos ~ ssr.ssr_pos
+    j_ssr.ssr_neg ~ ssr.ssr_neg
+
+    # ===== PRESSURE SENSOR INPUT =====
+    # 3-pin connector: 5V, Signal, GND
+    j_pressure = new SensorConnector
+    j_pressure.power ~ power_5v
+
+    # Voltage divider: 5V sensor output -> 3.3V max for ADC
+    # Using 10k/20k divider: Vout = 5V * 20k/(10k+20k) = 3.33V
+    signal pressure_adc     # Output to ADC (max 3.3V)
+
+    r_div_top = new Resistor
+    r_div_top.resistance = 10kohm +/- 1%
+    r_div_top.package = "0603"
+
+    r_div_bot = new Resistor
+    r_div_bot.resistance = 20kohm +/- 1%
+    r_div_bot.package = "0603"
+
+    # Divider circuit
+    j_pressure.output ~> r_div_top ~> pressure_adc
+    pressure_adc ~> r_div_bot ~> power_3v3.lv
+
+    # Filter cap on ADC input (reduces noise)
+    c_adc = new Capacitor
+    c_adc.capacitance = 100nF +/- 10%
+    c_adc.package = "0603"
+    pressure_adc ~> c_adc ~> power_3v3.lv
+
+    # Connect to MCU ADC
+    pressure_adc ~ mcu.gpio1
+
+    # ===== STATUS LEDs (Active Low) =====
+    # Green - OK/Running
+    led_ok = new LEDIndicatorGreen
+    led_ok.power ~ power_3v3
+    led_ok.ctrl ~ mcu.gpio5
+
+    # Orange - Heating
+    led_heat = new LEDIndicatorOrange
+    led_heat.power ~ power_3v3
+    led_heat.ctrl ~ mcu.gpio6
+
+    # Red - Error
+    led_err = new LEDIndicatorRed
+    led_err.power ~ power_3v3
+    led_err.ctrl ~ mcu.gpio7
+
+
+# Build target
+module App from PIDController:
+    """Top-level application for building"""
+    pass

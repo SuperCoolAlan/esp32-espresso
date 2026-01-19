@@ -1,0 +1,238 @@
+#pragma experiment("BRIDGE_CONNECT")
+"""Basic components for the PID controller
+
+Uses stdlib for interfaces and passives where possible.
+Custom components defined here for specific parts not in stdlib.
+Footprints are automatically downloaded from LCSC based on lcsc_id.
+"""
+
+import ElectricPower, Resistor, Capacitor
+
+
+# ===== VOLTAGE REGULATOR =====
+component AMS1117_3V3:
+    """AMS1117-3.3V linear regulator - SOT-223"""
+    mpn = "AMS1117-3.3"
+    lcsc_id = "C6186"
+
+    signal vin ~ pin 3
+    signal gnd ~ pin 1
+    signal vout ~ pin 2
+
+
+module LDO_3V3:
+    """3.3V LDO regulator module with input/output caps"""
+    power_in = new ElectricPower
+    power_out = new ElectricPower
+
+    ic = new AMS1117_3V3
+
+    # Input cap (10uF recommended)
+    c_in = new Capacitor
+    c_in.capacitance = 10uF +/- 20%
+    c_in.package = "0805"
+    power_in.hv ~> c_in ~> power_in.lv
+
+    # Output cap (22uF recommended for stability)
+    c_out = new Capacitor
+    c_out.capacitance = 22uF +/- 20%
+    c_out.package = "0805"
+    power_out.hv ~> c_out ~> power_out.lv
+
+    # Regulator connections
+    power_in.hv ~ ic.vin
+    power_in.lv ~ ic.gnd
+    ic.gnd ~ power_out.lv
+    ic.vout ~ power_out.hv
+
+
+# ===== TRANSISTOR =====
+component BC817:
+    """BC817 NPN transistor - SOT-23"""
+    mpn = "BC817-40"
+    lcsc_id = "C8589"
+
+    signal base ~ pin 1
+    signal emitter ~ pin 2
+    signal collector ~ pin 3
+
+
+# ===== EXTERNAL SSR DRIVER =====
+module SSR_Driver:
+    """Driver circuit for external panel-mount SSR (e.g., Fotek SSR-25DA)
+
+    External SSRs typically need 3-32VDC input at 7.5-25mA.
+    This circuit provides drive current from 3.3V logic via transistor.
+
+    Uses BC817 NPN to sink current through external SSR's input LED.
+    At 3.3V with 1k base resistor: Ib = (3.3-0.7)/1k = 2.6mA
+    BC817 hFE min ~100, so Ic_max > 260mA (plenty for SSR drive)
+
+    Output connector provides +5V and switched ground.
+    External SSR connects: (+) to ssr_pos, (-) to ssr_neg
+    When GPIO is HIGH, transistor conducts, SSR turns ON.
+    """
+    power_3v3 = new ElectricPower  # 3.3V for logic
+    power_5v = new ElectricPower   # 5V for SSR drive (higher voltage = more margin)
+    signal ctrl                     # Control input from MCU
+
+    # Output signals for connector
+    signal ssr_pos    # Connect to external SSR (+) input
+    signal ssr_neg    # Connect to external SSR (-) input
+
+    # Components
+    q = new BC817
+
+    # Base resistor: 1k for ~2.6mA base current
+    r_base = new Resistor
+    r_base.resistance = 1kohm +/- 5%
+    r_base.package = "0603"
+
+    # Transistor driver circuit
+    ctrl ~> r_base ~> q.base
+    q.emitter ~ power_3v3.lv
+
+    # SSR drive output
+    # +5V goes directly to SSR positive input
+    # Transistor switches ground to SSR negative input
+    power_5v.hv ~ ssr_pos
+    q.collector ~ ssr_neg
+
+
+# ===== LED COMPONENTS =====
+# Using specific LCSC parts for each color - footprints from LCSC
+
+component LED_Green_0603:
+    """Green LED 0603 - specific LCSC part"""
+    lcsc_id = "C72043"
+    signal anode ~ pin 2
+    signal cathode ~ pin 1
+
+component LED_Orange_0603:
+    """Orange/Amber LED 0603 - specific LCSC part"""
+    lcsc_id = "C72041"
+    signal anode ~ pin 2
+    signal cathode ~ pin 1
+
+component LED_Red_0603:
+    """Red LED 0603 - specific LCSC part"""
+    lcsc_id = "C2286"
+    signal anode ~ pin 2
+    signal cathode ~ pin 1
+
+
+# ===== LED INDICATOR MODULES =====
+
+module LEDIndicatorGreen:
+    """Green LED with current limiting resistor for 3.3V supply (active-low)"""
+    power = new ElectricPower
+    signal ctrl  # Connect to GPIO (sink low to turn on)
+
+    led = new LED_Green_0603
+
+    resistor = new Resistor
+    resistor.resistance = 100ohm +/- 5%  # (3.3V - 2.2V) / 10mA = 110 ohm
+    resistor.package = "0603"
+
+    # Active-low: VCC -> resistor -> LED -> GPIO (GPIO sinks current)
+    power.hv ~> resistor ~> led.anode
+    led.cathode ~ ctrl
+
+
+module LEDIndicatorOrange:
+    """Orange/Amber LED with current limiting resistor for 3.3V supply (active-low)"""
+    power = new ElectricPower
+    signal ctrl  # Connect to GPIO (sink low to turn on)
+
+    led = new LED_Orange_0603
+
+    resistor = new Resistor
+    resistor.resistance = 120ohm +/- 5%  # (3.3V - 2.0V) / 10mA = 130 ohm
+    resistor.package = "0603"
+
+    # Active-low: VCC -> resistor -> LED -> GPIO (GPIO sinks current)
+    power.hv ~> resistor ~> led.anode
+    led.cathode ~ ctrl
+
+
+module LEDIndicatorRed:
+    """Red LED with current limiting resistor for 3.3V supply (active-low)"""
+    power = new ElectricPower
+    signal ctrl  # Connect to GPIO (sink low to turn on)
+
+    led = new LED_Red_0603
+
+    resistor = new Resistor
+    resistor.resistance = 150ohm +/- 5%  # (3.3V - 1.8V) / 10mA = 150 ohm
+    resistor.package = "0603"
+
+    # Active-low: VCC -> resistor -> LED -> GPIO (GPIO sinks current)
+    power.hv ~> resistor ~> led.anode
+    led.cathode ~ ctrl
+
+
+# ===== CONNECTORS =====
+# Using standard 2.54mm pin headers - footprints from LCSC
+
+component PinHeader2P:
+    """2-position pin header - 2.54mm pitch"""
+    lcsc_id = "C492405"
+
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+
+component PinHeader3P:
+    """3-position pin header - 2.54mm pitch"""
+    lcsc_id = "C492403"
+
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+
+
+module PowerConnector:
+    """2-pin power input connector"""
+    power = new ElectricPower
+
+    conn = new PinHeader2P
+    power.hv ~ conn.p1   # VCC/+5V
+    power.lv ~ conn.p2   # GND
+
+
+module ThermocoupleConnector:
+    """2-pin thermocouple connector
+    Note: For best accuracy, use proper TC-rated connectors
+    """
+    signal tc_plus
+    signal tc_minus
+
+    conn = new PinHeader2P
+    tc_plus ~ conn.p1    # TC+
+    tc_minus ~ conn.p2   # TC-
+
+
+module SSRControlConnector:
+    """2-pin connector for external SSR control signal
+
+    Directly connect to external panel-mount SSR (e.g., Fotek SSR-25DA).
+    Pin 1: SSR+ (connect to SSR input positive, typically 3-32VDC +)
+    Pin 2: SSR- (connect to SSR input negative/ground)
+    """
+    signal ssr_pos
+    signal ssr_neg
+
+    conn = new PinHeader2P
+    ssr_pos ~ conn.p1    # SSR input (+)
+    ssr_neg ~ conn.p2    # SSR input (-)
+
+
+module SensorConnector:
+    """3-pin connector for pressure sensor (5V power + signal)"""
+    power = new ElectricPower
+    signal output
+
+    conn = new PinHeader3P
+    power.hv ~ conn.p1   # +5V
+    output ~ conn.p2     # Signal
+    power.lv ~ conn.p3   # GND

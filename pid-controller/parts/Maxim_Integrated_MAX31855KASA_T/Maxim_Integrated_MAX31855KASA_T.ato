@@ -1,0 +1,26 @@
+#pragma experiment("TRAITS")
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Maxim_Integrated_MAX31855KASA_T_package:
+    """Cold Junction Compensated Thermocouple to Digital Converter, 14 Bits Temperature Resolution, -40 to 125 degC, 8-Pin SOIC (S8+4), Pb-Free, Tape ang Reel"""
+
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C52028", date="2026-01-19T04:43:28.084315+00:00", checksum="70485b08920280ba4f384cd4e31f032246089b2a3c511cdd5fd1444d417b80ab">
+
+    trait is_atomic_part<manufacturer="Maxim Integrated", partnumber="MAX31855KASA+T", footprint="SO-8_L4.9-W3.9-P1.27-LS5.9-BL.kicad_mod", symbol="MAX31855KASA+T.kicad_sym", model="SO-8_L4.9-W3.9-H1.5-LS5.9-P1.27.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C52028", manufacturer="Maxim Integrated", partno="MAX31855KASA+T">
+    trait has_designator_prefix<prefix="U">
+
+    # pins
+    signal DNC ~ pin 8
+    signal GND ~ pin 1
+    signal SCK ~ pin 5
+    signal SO ~ pin 7
+    signal Tneg ~ pin 2
+    signal Tpos ~ pin 3
+    signal VCC ~ pin 4
+    signal nCS ~ pin 6

@@ -1,0 +1,167 @@
+(footprint "Advanced_Monolithic_Systems_AMS1117_3_3:SOT-223-3_L6.5-W3.4-P2.30-LS7.0-BR"
+    (layer "F.Cu")
+    (descr "")
+    (version 20241229)
+    (generator "faebryk")
+    (generator_version "v5")
+    (tedit "5DC5F6A4")
+    (property "Reference" "REF**"
+        (at 0 -6.3 0)
+        (layer "F.SilkS")
+        (hide no)
+        (uuid "e672b7d5-3979-4c7e-b854-7196e764304d")
+        (effects
+            (font
+                (size 1 1)
+                (thickness 0.15)
+            )
+        )
+    )
+    (property "Value" "SOT-223-3_L6.5-W3.4-P2.30-LS7.0-BR"
+        (at 0 6.3 0)
+        (layer "F.Fab")
+        (hide no)
+        (uuid "3ada96d9-e0fc-4f77-a302-1989e09e93f2")
+        (effects
+            (font
+                (size 1 1)
+                (thickness 0.15)
+            )
+        )
+    )
+    (property "checksum" "2c10ddfab54e493a2361f5c982ccfb124b99a146119104b77385ae3f88dfb09f"
+        (at 0 0 0)
+        (layer "User.9")
+        (hide no)
+        (uuid "7e1a87eb-a924-4d67-bada-fa71ec0b49b0")
+        (effects
+            (font
+                (size 0.125 0.125)
+                (thickness 0.01875)
+            )
+            (hide yes)
+        )
+    )
+    (attr smd)
+    (fp_line
+        (start -1.57 3.33)
+        (end -1.57 -3.33)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "46ad9e65-ec86-454e-bfbf-3b0c6d0b5036")
+    )
+    (fp_line
+        (start -1.57 -3.33)
+        (end 1.37 -3.33)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "6c19a311-5dd5-49d8-8c63-268022c3e1cb")
+    )
+    (fp_line
+        (start 1.37 -3.33)
+        (end 1.37 3.33)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "f360220c-b0ad-4c29-9531-70b9eb4ef24f")
+    )
+    (fp_line
+        (start 1.37 3.33)
+        (end -1.57 3.33)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "1f8d7dce-8d86-45a2-bf75-3a30fff64716")
+    )
+    (fp_circle
+        (center 3.4 3.25)
+        (end 3.43 3.25)
+        (stroke
+            (width 0.06)
+            (type solid)
+        )
+        (fill no)
+        (layer "F.Fab")
+        (uuid "9abdb0a6-912f-4278-87a1-f7261f8a06b8")
+    )
+    (fp_circle
+        (center 4.55 2.19)
+        (end 4.8 2.19)
+        (stroke
+            (width 0.5)
+            (type solid)
+        )
+        (fill no)
+        (layer "Cmts.User")
+        (uuid "c7ebc846-d8ff-4984-bf22-8b95fb3f19b1")
+    )
+    (fp_text user "%R"
+        (at 0 0 0)
+        (layer "F.Fab")
+        (uuid "8cb587cb-e36d-4e13-b7ad-e03d5925acd5")
+        (effects
+            (font
+                (size 1 1)
+                (thickness 0.15)
+            )
+        )
+        (unlocked no)
+    )
+    (fp_text user "${REFERENCE}"
+        (at 0 -6.3 0)
+        (layer "F.SilkS")
+        (uuid "e672b7d5-3979-4c7e-b854-7196e764304d")
+        (effects
+            (font
+                (size 1 1)
+                (thickness 0.15)
+            )
+        )
+        (unlocked no)
+    )
+    (pad "1" smd rect
+        (at 2.97 2.3 0)
+        (size 2.5 1.1)
+        (layers "F.Cu" "F.Paste" "F.Mask")
+        (uuid "0fc815a4-3625-4042-b1cf-8e1fef33b9c3")
+    )
+    (pad "2" smd rect
+        (at 2.97 0 0)
+        (size 2.5 1.1)
+        (layers "F.Cu" "F.Paste" "F.Mask")
+        (uuid "0f931cd3-52f3-4e3c-9660-8959ef13756f")
+    )
+    (pad "3" smd rect
+        (at 2.97 -2.3 0)
+        (size 2.5 1.1)
+        (layers "F.Cu" "F.Paste" "F.Mask")
+        (uuid "c25dd276-df17-4365-87f7-5175123ba795")
+    )
+    (pad "4" smd rect
+        (at -2.97 0 0)
+        (size 2.34 3.6)
+        (layers "F.Cu" "F.Paste" "F.Mask")
+        (uuid "c76ef8fe-684e-4ac9-b700-77bb19161328")
+    )
+    (model "${KIPRJMOD}/../../parts/Advanced_Monolithic_Systems_AMS1117_3_3/SOT-223-4P_L6.5-W3.5-H1.6-LS7.0-P2.30.step"
+        (offset
+            (xyz 0 0 0)
+        )
+        (scale
+            (xyz 1 1 1)
+        )
+        (rotate
+            (xyz 0 0 180)
+        )
+    )
+)

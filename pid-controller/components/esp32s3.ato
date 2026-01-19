@@ -1,0 +1,146 @@
+#pragma experiment("BRIDGE_CONNECT")
+"""ESP32-S3-WROOM-1 module definition"""
+
+import ElectricPower, Resistor, Capacitor
+
+
+component ESP32_S3_WROOM_1:
+    """ESP32-S3-WROOM-1 WiFi+BLE module - 8MB flash variant"""
+    mpn = "ESP32-S3-WROOM-1-N8"
+    lcsc_id = "C2913198"
+
+    # Power
+    signal gnd ~ pin 1
+    signal gnd2 ~ pin 40
+    signal gnd3 ~ pin 41
+    signal v3p3 ~ pin 2
+
+    # Enable (active high, directly active chip)
+    signal en ~ pin 3
+
+    # GPIO pins
+    signal io0 ~ pin 27   # Boot mode (pull high for normal boot)
+    signal io1 ~ pin 26   # ADC1_CH0
+    signal io2 ~ pin 25   # ADC1_CH1
+    signal io3 ~ pin 15   # ADC1_CH2
+    signal io4 ~ pin 4    # ADC1_CH3
+    signal io5 ~ pin 5    # ADC1_CH4
+    signal io6 ~ pin 6    # ADC1_CH5
+    signal io7 ~ pin 7    # ADC1_CH6
+    signal io8 ~ pin 12   # ADC1_CH7
+    signal io9 ~ pin 17   # ADC1_CH8
+    signal io10 ~ pin 18  # FSPI CS
+    signal io11 ~ pin 19  # FSPI MOSI
+    signal io12 ~ pin 20  # FSPI CLK
+    signal io13 ~ pin 21  # FSPI MISO
+    signal io14 ~ pin 22  # FSPI WP
+    signal io15 ~ pin 8
+    signal io16 ~ pin 9
+    signal io17 ~ pin 10
+    signal io18 ~ pin 11
+    signal io19 ~ pin 13  # USB D-
+    signal io20 ~ pin 14  # USB D+
+    signal io21 ~ pin 23
+    signal io35 ~ pin 28
+    signal io36 ~ pin 29
+    signal io37 ~ pin 30
+    signal io38 ~ pin 31
+    signal io39 ~ pin 32
+    signal io40 ~ pin 33
+    signal io41 ~ pin 34
+    signal io42 ~ pin 35
+    signal io45 ~ pin 36
+    signal io46 ~ pin 37
+    signal io47 ~ pin 38
+    signal io48 ~ pin 39
+    # Note: UART0 (GPIO43/44) not exposed on WROOM-1 module
+
+
+
+module ESP32S3Module:
+    """ESP32-S3 with decoupling, EN circuit, and boot mode pullup
+
+    EN circuit: 10k pullup + 1uF cap for RC delay (~10ms)
+    This ensures clean power-on reset.
+
+    GPIO0: 10k pullup for normal boot mode (high = SPI boot)
+    """
+
+    # Power interface
+    power = new ElectricPower
+
+    # SPI interface (directly exposed for flexibility)
+    signal spi_clk
+    signal spi_miso
+    signal spi_mosi
+    signal spi_cs
+
+    # General GPIO
+    signal gpio1   # ADC input (for pressure sensor)
+    signal gpio4
+    signal gpio5
+    signal gpio6
+    signal gpio7
+
+    # USB
+    signal usb_dm
+    signal usb_dp
+
+    # The module
+    ic = new ESP32_S3_WROOM_1
+
+    # Power connections
+    power.hv ~ ic.v3p3
+    power.lv ~ ic.gnd
+    power.lv ~ ic.gnd2
+    power.lv ~ ic.gnd3
+
+    # ===== EN PIN CIRCUIT =====
+    # Pullup resistor
+    r_en = new Resistor
+    r_en.resistance = 10kohm +/- 5%
+    r_en.package = "0603"
+    power.hv ~> r_en ~> ic.en
+
+    # RC delay capacitor for power-on reset
+    c_en = new Capacitor
+    c_en.capacitance = 1uF +/- 20%
+    c_en.package = "0603"
+    ic.en ~> c_en ~> power.lv
+
+    # ===== GPIO0 BOOT MODE =====
+    # Pullup for normal SPI boot (high = run from flash)
+    r_boot = new Resistor
+    r_boot.resistance = 10kohm +/- 5%
+    r_boot.package = "0603"
+    power.hv ~> r_boot ~> ic.io0
+
+    # ===== DECOUPLING CAPACITORS =====
+    # 100nF ceramic close to VCC pin
+    cap_100n = new Capacitor
+    cap_100n.capacitance = 100nF +/- 10%
+    cap_100n.package = "0603"
+    power.hv ~> cap_100n ~> power.lv
+
+    # 10uF bulk capacitor
+    cap_10u = new Capacitor
+    cap_10u.capacitance = 10uF +/- 20%
+    cap_10u.package = "0805"
+    power.hv ~> cap_10u ~> power.lv
+
+    # ===== SPI (FSPI) =====
+    spi_clk ~ ic.io12
+    spi_miso ~ ic.io13
+    spi_mosi ~ ic.io11
+    spi_cs ~ ic.io10
+
+    # ===== GPIO PASSTHROUGH =====
+    gpio1 ~ ic.io1
+    gpio4 ~ ic.io4
+    gpio5 ~ ic.io5
+    gpio6 ~ ic.io6
+    gpio7 ~ ic.io7
+
+    # ===== USB PASSTHROUGH =====
+    usb_dm ~ ic.io19
+    usb_dp ~ ic.io20

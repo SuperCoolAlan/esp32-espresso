@@ -1,0 +1,25 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.python-version
+
+# macOS
+.DS_Store
+
+# KiCad
+*-backups/
+*.kicad_prl
+fp-info-cache
+
+# Atopile
+.ato/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Lock files (optional - remove if you want to track)
+uv.lock

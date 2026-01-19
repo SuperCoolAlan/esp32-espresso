@@ -1,0 +1,76 @@
+#pragma experiment("BRIDGE_CONNECT")
+"""MAX31855 K-type thermocouple-to-digital converter"""
+
+import ElectricPower, Capacitor
+
+
+component MAX31855KASA:
+    """MAX31855 K-type thermocouple IC - SOIC-8
+
+    14-bit thermocouple temperature data
+    SPI interface (read-only, no MOSI needed)
+    -270°C to +1372°C measurement range
+    """
+    mpn = "MAX31855KASA+T"
+    lcsc_id = "C52028"
+
+    # Power pins
+    signal gnd ~ pin 1
+    signal vcc ~ pin 4
+
+    # Thermocouple inputs
+    signal t_minus ~ pin 2  # T- (connect to thermocouple -)
+    signal t_plus ~ pin 3   # T+ (connect to thermocouple +)
+
+    # SPI interface (active-low CS, data on SO)
+    signal sck ~ pin 5      # Serial clock
+    signal cs ~ pin 6       # Chip select (active low)
+    signal so ~ pin 7       # Serial data out (MISO)
+
+    # NC pin
+    signal nc ~ pin 8
+
+
+
+# Simple SPI interface for read-only devices (no MOSI)
+interface SPI_ReadOnly:
+    signal sck
+    signal miso
+    signal cs
+
+
+module MAX31855Module:
+    """MAX31855 with decoupling capacitor
+
+    Requires 100nF bypass cap close to VCC pin per datasheet.
+    """
+
+    # Interfaces
+    power = new ElectricPower
+    spi = new SPI_ReadOnly
+
+    # Thermocouple connections (directly exposed)
+    signal tc_plus
+    signal tc_minus
+
+    # The IC
+    ic = new MAX31855KASA
+
+    # Power connections
+    power.hv ~ ic.vcc
+    power.lv ~ ic.gnd
+
+    # SPI connections
+    spi.sck ~ ic.sck
+    spi.miso ~ ic.so
+    spi.cs ~ ic.cs
+
+    # Thermocouple connections
+    tc_plus ~ ic.t_plus
+    tc_minus ~ ic.t_minus
+
+    # Decoupling capacitor (100nF per datasheet)
+    cap = new Capacitor
+    cap.capacitance = 100nF +/- 10%
+    cap.package = "0603"
+    power.hv ~> cap ~> power.lv

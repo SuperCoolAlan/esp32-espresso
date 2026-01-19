@@ -1,0 +1,20 @@
+#pragma experiment("TRAITS")
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Ningbo_Kangnex_Elec_WJ500V_5_08_2P_package:
+    """WJ500V-5.08-2P"""
+
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C8465", date="2026-01-19T04:43:16.736908+00:00", checksum="e1efae72e19772045f57e36ce641bef4de705ff355724733a9890beb6a454007">
+
+    trait is_atomic_part<manufacturer="Ningbo Kangnex Elec", partnumber="WJ500V-5.08-2P", footprint="CONN-TH_2P-P5.00_WJ500V-5.08-2P.kicad_mod", symbol="WJ500V-5.08-2P-14-00A.kicad_sym", model="CONN-TH_2P-P5.00_WJ500V-5.08-2P.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C8465", manufacturer="Ningbo Kangnex Elec", partno="WJ500V-5.08-2P">
+    trait has_designator_prefix<prefix="P">
+
+    # pins
+    pin 1
+    pin 2

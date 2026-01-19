@@ -1,0 +1,284 @@
+(footprint "Everlight_Elec_19_217_BHC_ZL1M2RY_3T:LED0603-FD_BLUE"
+    (layer "F.Cu")
+    (descr "")
+    (version 20241229)
+    (generator "faebryk")
+    (generator_version "v5")
+    (tedit "5DC5F6A4")
+    (property "Reference" "REF**"
+        (at 0 -4 0)
+        (layer "F.SilkS")
+        (hide no)
+        (uuid "716def52-52f9-4379-ab23-6208f656a98e")
+        (effects
+            (font
+                (size 1 1)
+                (thickness 0.15)
+            )
+        )
+    )
+    (property "Value" "LED0603-FD_BLUE"
+        (at 0 4 0)
+        (layer "F.Fab")
+        (hide no)
+        (uuid "739494cb-73ee-46fa-9e87-31c06ba90409")
+        (effects
+            (font
+                (size 1 1)
+                (thickness 0.15)
+            )
+        )
+    )
+    (property "checksum" "d99b76979e5693ea186e84a32b1786f036ec180bc862e2a976f1212dfccb5423"
+        (at 0 0 0)
+        (layer "User.9")
+        (hide no)
+        (uuid "5e0657d8-0120-411e-9cd3-b1ab9196518f")
+        (effects
+            (font
+                (size 0.125 0.125)
+                (thickness 0.01875)
+            )
+            (hide yes)
+        )
+    )
+    (attr smd)
+    (fp_line
+        (start 0.09 -0.34)
+        (end 0.09 0.15)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "eccb5f3a-927f-49f4-931b-64d1b3bd4202")
+    )
+    (fp_line
+        (start 0.09 0.15)
+        (end 0.04 0.19)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "1d80197b-506f-4df8-8e61-fa64f70bef77")
+    )
+    (fp_line
+        (start -0.2 -0.05)
+        (end 0.2 0.4)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "46698cbe-4438-4d6b-b108-040d10bdc950")
+    )
+    (fp_line
+        (start 0.2 0.4)
+        (end 0.2 -0.45)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "580ae98c-41d5-4b1f-8fb2-ca0422964602")
+    )
+    (fp_line
+        (start 0.19 -0.44)
+        (end -0.2 -0.05)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "4b1da6be-845a-4412-97f0-39b32de2ae9b")
+    )
+    (fp_line
+        (start -0.04 -0.21)
+        (end -0.04 0.1)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "8f9d0b64-91e5-461d-9b44-51f093488633")
+    )
+    (fp_line
+        (start -0.04 0.1)
+        (end -0.05 0.1)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "935c108b-6a72-40f1-be9e-1c73a51dbca0")
+    )
+    (fp_line
+        (start 0.1 -0.05)
+        (end -0.2 -0.05)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "c1ce491d-5263-4812-a0af-8c39b888a281")
+    )
+    (fp_line
+        (start -0.4 -0.76)
+        (end -1.2 -0.75)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "c40a4f6b-83c4-498a-aacd-73bd3af639f1")
+    )
+    (fp_line
+        (start -0.32 0.76)
+        (end -1.2 0.75)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "22a92e7c-9b0b-4cc8-ab49-2cc7b8bcf5e2")
+    )
+    (fp_line
+        (start 0.13 0.75)
+        (end 1.38 0.75)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "5a55b30d-d671-4ae0-bb85-d6560d47f572")
+    )
+    (fp_line
+        (start -1.5 0.35)
+        (end -1.5 0.45)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "6792d314-0738-4698-8e40-e1161974bc65")
+    )
+    (fp_line
+        (start -1.5 0.45)
+        (end -1.2 0.75)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "aa401ad1-c997-4dcb-8447-22032b5d60ae")
+    )
+    (fp_line
+        (start -1.5 -0.35)
+        (end -1.5 -0.45)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "719ad840-107a-4d2a-ae08-f979f7cdb453")
+    )
+    (fp_line
+        (start -1.5 -0.45)
+        (end -1.2 -0.75)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "846cc10d-5aa1-460a-a7b2-e023e0fbc06d")
+    )
+    (fp_line
+        (start -1.5 -0.35)
+        (end -1.5 0.35)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "ad321b5a-94d0-4e5a-903a-5bfc3b36ccba")
+    )
+    (fp_line
+        (start 1.38 -0.75)
+        (end 1.38 0.73)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "3ea95ad3-7ea0-404b-a464-e94e19503bb5")
+    )
+    (fp_line
+        (start 0.13 -0.75)
+        (end 1.38 -0.75)
+        (stroke
+            (width 0.15)
+            (type solid)
+        )
+        (layer "F.SilkS")
+        (uuid "7b381789-c3ac-442f-912d-26e5342e27e8")
+    )
+    (fp_circle
+        (center -0.8 0.4)
+        (end -0.77 0.4)
+        (stroke
+            (width 0.06)
+            (type solid)
+        )
+        (fill no)
+        (layer "F.Fab")
+        (uuid "34240a99-bb4a-4623-b0ea-8e55d693ab16")
+    )
+    (fp_text user "%R"
+        (at 0 0 0)
+        (layer "F.Fab")
+        (uuid "8c7f6f35-a150-4690-9ead-db62e522696c")
+        (effects
+            (font
+                (size 1 1)
+                (thickness 0.15)
+            )
+        )
+        (unlocked no)
+    )
+    (fp_text user "${REFERENCE}"
+        (at 0 -4 0)
+        (layer "F.SilkS")
+        (uuid "716def52-52f9-4379-ab23-6208f656a98e")
+        (effects
+            (font
+                (size 1 1)
+                (thickness 0.15)
+            )
+        )
+        (unlocked no)
+    )
+    (pad "2" smd rect
+        (at 0.72 0 180)
+        (size 0.8 0.9)
+        (layers "F.Cu" "F.Paste" "F.Mask")
+        (uuid "8385f791-5bf8-4fd3-86a4-ca32146a4f41")
+    )
+    (pad "1" smd rect
+        (at -0.72 0 180)
+        (size 0.8 0.9)
+        (layers "F.Cu" "F.Paste" "F.Mask")
+        (uuid "a1eb774d-092c-418f-b391-0e7fed36efef")
+    )
+    (model "${KIPRJMOD}/../../parts/Everlight_Elec_19_217_BHC_ZL1M2RY_3T/LED0603-FD_BLUE.step"
+        (offset
+            (xyz 0 0 0)
+        )
+        (scale
+            (xyz 1 1 1)
+        )
+        (rotate
+            (xyz 0 0 180)
+        )
+    )
+)
