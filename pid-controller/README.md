@@ -11,15 +11,18 @@ This board provides closed-loop temperature control for an espresso machine boil
 | Component | Part Number | Description |
 |-----------|-------------|-------------|
 | MCU | ESP32-S3-WROOM-1-N8 | WiFi/BLE module, 8MB flash |
+| AC-DC Converter | HLK-PM01 | 100-240V AC → 5V DC @ 600mA (3W) |
 | Thermocouple IC | MAX31855KASA | K-type thermocouple-to-digital converter |
-| Voltage Regulator | AMS1117-3.3 | 3.3V LDO (from 5V input) |
+| Voltage Regulator | AMS1117-3.3 | 3.3V LDO (from 5V) |
 | SSR Driver | BC817-40 | NPN transistor for external SSR control |
+| Power Diode | SS14 | Schottky diode for USB/AC power OR-ing |
 
 ### Connectors / Terminals
 
 | Connector | Pins | Function |
 |-----------|------|----------|
-| J_POWER | 2 | 5V DC power input (+5V, GND) |
+| J_AC | 2 | AC mains input (Line, Neutral) |
+| J_USB | USB-C | Programming/debugging + backup 5V power |
 | J_TC | 2 | K-type thermocouple input (TC+, TC-) |
 | J_SSR | 2 | External SSR control output (SSR+, SSR-) |
 | J_PRESSURE | 3 | Pressure sensor input (+5V, Signal, GND) |
@@ -69,7 +72,9 @@ Board J_SSR          External SSR (25A)         Heater
 
 ## Circuit Features
 
-- **Power Input Protection**: 5V input with reverse polarity protection via LDO
+- **AC-DC Power**: On-board HLK-PM01 isolated converter (100-240V AC → 5V DC)
+- **USB Type-C**: For programming/debugging, with Schottky diode power OR-ing
+- **Dual Power Sources**: USB power works when AC is disconnected (for bench programming)
 - **Boot Circuit**: 10k pullup + 1µF RC delay on EN pin for reliable power-on reset
 - **Boot Mode**: 10k pullup on GPIO0 for normal SPI flash boot
 - **Decoupling**: 100nF + 10µF on 3.3V rail, 10µF + 22µF on LDO

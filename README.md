@@ -20,11 +20,12 @@ The controller board is designed in [atopile](https://atopile.io) and manufactur
 ### Features
 
 - **ESP32-S3** microcontroller with WiFi/BLE
+- **On-board AC-DC converter** (100-240V AC → 5V DC) - direct mains power
+- **USB Type-C** for programming/debugging (also provides backup power)
 - **MAX31855** K-type thermocouple interface for precise temperature measurement
 - **External SSR control** for heater switching (supports 25A panel-mount SSRs)
 - **Pressure sensor input** with 5V→3.3V level shifting
 - **Status LEDs** for system state indication
-- **5V powered** via USB or external supply
 
 See [pid-controller/README.md](pid-controller/README.md) for detailed board documentation.
 
