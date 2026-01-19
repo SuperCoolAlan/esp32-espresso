@@ -1,0 +1,36 @@
+#pragma experiment("TRAITS")
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component XFCN_BH254V_20P_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C492444", date="2026-01-19T05:06:34.217424+00:00", checksum="b472aede94d95b3b6d1685da33a0bffd0fcbaff06b25eb49c1788f0f137de567">
+
+    trait is_atomic_part<manufacturer="XFCN", partnumber="BH254V-20P", footprint="CONN-TH_20P-P2.54_BH254V-20P.kicad_mod", symbol="BH254V-20P.kicad_sym", model="CONN-TH_20P-P2.54_BH254V-20P.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C492444", manufacturer="XFCN", partno="BH254V-20P">
+    trait has_designator_prefix<prefix="CN">
+
+    # pins
+    pin 2
+    pin 19
+    pin 4
+    pin 17
+    pin 6
+    pin 15
+    pin 8
+    pin 13
+    pin 10
+    pin 11
+    pin 12
+    pin 9
+    pin 14
+    pin 7
+    pin 16
+    pin 5
+    pin 18
+    pin 3
+    pin 20
+    pin 1

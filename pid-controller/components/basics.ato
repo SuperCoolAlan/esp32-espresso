@@ -9,6 +9,58 @@ Footprints are automatically downloaded from LCSC based on lcsc_id.
 import ElectricPower, Resistor, Capacitor
 
 
+# ===== AC-DC CONVERTER =====
+component HLK_PM01:
+    """Hi-Link HLK-PM01 AC-DC converter module
+
+    Input: 100-240V AC (universal)
+    Output: 5V DC @ 600mA (3W)
+    Isolated, compact module for direct PCB mount
+    """
+    mpn = "HLK-PM01"
+    lcsc_id = "C209903"
+
+    # AC input
+    signal ac_live ~ pin 1     # AC Line/Live
+    signal ac_neutral ~ pin 2  # AC Neutral
+
+    # DC output
+    signal dc_neg ~ pin 3      # DC- (GND)
+    signal dc_pos ~ pin 4      # DC+ (5V)
+
+
+module AC_DC_5V:
+    """AC to 5V DC power supply module
+
+    Uses Hi-Link HLK-PM01 isolated converter.
+    Input: 100-240V AC
+    Output: 5V DC @ 600mA
+    """
+    # AC input interface
+    signal ac_line
+    signal ac_neutral
+
+    # DC output interface
+    power_out = new ElectricPower
+
+    # The converter module
+    converter = new HLK_PM01
+
+    # AC connections
+    ac_line ~ converter.ac_live
+    ac_neutral ~ converter.ac_neutral
+
+    # DC output connections
+    converter.dc_pos ~ power_out.hv
+    converter.dc_neg ~ power_out.lv
+
+    # Output filter capacitor for ripple reduction
+    c_out = new Capacitor
+    c_out.capacitance = 100uF +/- 20%
+    c_out.package = "0805"
+    power_out.hv ~> c_out ~> power_out.lv
+
+
 # ===== VOLTAGE REGULATOR =====
 component AMS1117_3V3:
     """AMS1117-3.3V linear regulator - SOT-223"""
@@ -97,6 +149,62 @@ module SSR_Driver:
     # Transistor switches ground to SSR negative input
     power_5v.hv ~ ssr_pos
     q.collector ~ ssr_neg
+
+
+# ===== SCHOTTKY DIODE =====
+component SS14:
+    """SS14 Schottky diode - 1A 40V - SMA package
+
+    Used for power OR-ing (USB vs AC-DC power source)
+    Low forward voltage drop (~0.4V at 1A)
+    """
+    mpn = "SS14"
+    lcsc_id = "C2480"
+
+    signal anode ~ pin 1
+    signal cathode ~ pin 2
+
+
+# ===== USB CONNECTOR =====
+component PinHeader4P:
+    """4-position pin header - 2.54mm pitch"""
+    lcsc_id = "C492444"
+
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+
+
+module USBHeader:
+    """4-pin USB header for programming/debugging
+
+    Pinout: VBUS, D-, D+, GND
+    Use with USB-to-header cable for programming.
+
+    Includes Schottky diode on VBUS for power OR-ing with AC-DC supply.
+    """
+    # Power output (through Schottky diode)
+    power = new ElectricPower
+
+    # USB data lines
+    signal usb_dp
+    signal usb_dm
+
+    # The connector
+    conn = new PinHeader4P
+
+    # Schottky diode on VBUS for power OR-ing
+    d_vbus = new SS14
+    conn.p1 ~ d_vbus.anode      # VBUS in
+    d_vbus.cathode ~ power.hv   # To 5V rail (with diode drop)
+
+    # USB data
+    conn.p2 ~ usb_dm            # D-
+    conn.p3 ~ usb_dp            # D+
+
+    # Ground
+    conn.p4 ~ power.lv          # GND
 
 
 # ===== LED COMPONENTS =====
@@ -236,3 +344,17 @@ module SensorConnector:
     power.hv ~ conn.p1   # +5V
     output ~ conn.p2     # Signal
     power.lv ~ conn.p3   # GND
+
+
+module ACInputConnector:
+    """2-pin connector for AC mains input (120V/240V)
+
+    WARNING: AC mains wiring requires proper safety measures.
+    Use appropriate wire gauge, fusing, and strain relief.
+    """
+    signal ac_line
+    signal ac_neutral
+
+    conn = new PinHeader2P
+    ac_line ~ conn.p1      # AC Line (Hot)
+    ac_neutral ~ conn.p2   # AC Neutral

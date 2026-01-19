@@ -36,6 +36,13 @@
         (descr "atopile: part lib: Everlight_Elec_19_217_GHC_YR1S2_3T")
     )
     (lib
+        (name "HI_LINK_HLK_PM01")
+        (type "KiCad")
+        (uri "${KIPRJMOD}/../../parts/HI_LINK_HLK_PM01")
+        (options "")
+        (descr "atopile: part lib: HI_LINK_HLK_PM01")
+    )
+    (lib
         (name "Hubei_KENTO_Elec_KT_0603R")
         (type "KiCad")
         (uri "${KIPRJMOD}/../../parts/Hubei_KENTO_Elec_KT_0603R")
@@ -43,11 +50,25 @@
         (descr "atopile: part lib: Hubei_KENTO_Elec_KT_0603R")
     )
     (lib
+        (name "MDD_Microdiode_Electronics_SS14")
+        (type "KiCad")
+        (uri "${KIPRJMOD}/../../parts/MDD_Microdiode_Electronics_SS14")
+        (options "")
+        (descr "atopile: part lib: MDD_Microdiode_Electronics_SS14")
+    )
+    (lib
         (name "Maxim_Integrated_MAX31855KASA_T")
         (type "KiCad")
         (uri "${KIPRJMOD}/../../parts/Maxim_Integrated_MAX31855KASA_T")
         (options "")
         (descr "atopile: part lib: Maxim_Integrated_MAX31855KASA_T")
+    )
+    (lib
+        (name "Murata_Electronics_GRM21BR60J107ME15L")
+        (type "KiCad")
+        (uri "${KIPRJMOD}/../../parts/Murata_Electronics_GRM21BR60J107ME15L")
+        (options "")
+        (descr "atopile: part lib: Murata_Electronics_GRM21BR60J107ME15L")
     )
     (lib
         (name "Ningbo_Kangnex_Elec_WJ129V_5_0_02P_14_00A")
@@ -62,6 +83,20 @@
         (uri "${KIPRJMOD}/../../parts/Ningbo_Kangnex_Elec_WJ500V_5_08_2P")
         (options "")
         (descr "atopile: part lib: Ningbo_Kangnex_Elec_WJ500V_5_08_2P")
+    )
+    (lib
+        (name "ROHM_Semicon_KDZVTR3_9B")
+        (type "KiCad")
+        (uri "${KIPRJMOD}/../../parts/ROHM_Semicon_KDZVTR3_9B")
+        (options "")
+        (descr "atopile: part lib: ROHM_Semicon_KDZVTR3_9B")
+    )
+    (lib
+        (name "SHOU_HAN_TYPE_C16PIN")
+        (type "KiCad")
+        (uri "${KIPRJMOD}/../../parts/SHOU_HAN_TYPE_C16PIN")
+        (options "")
+        (descr "atopile: part lib: SHOU_HAN_TYPE_C16PIN")
     )
     (lib
         (name "Samsung_Electro_Mechanics_CL10A105KB8NNNC")
@@ -125,6 +160,13 @@
         (uri "${KIPRJMOD}/../../parts/UNI_ROYAL_0603WAF2002T5E")
         (options "")
         (descr "atopile: part lib: UNI_ROYAL_0603WAF2002T5E")
+    )
+    (lib
+        (name "XFCN_BH254V_20P")
+        (type "KiCad")
+        (uri "${KIPRJMOD}/../../parts/XFCN_BH254V_20P")
+        (options "")
+        (descr "atopile: part lib: XFCN_BH254V_20P")
     )
     (lib
         (name "XFCN_PZ254V_11_04P")

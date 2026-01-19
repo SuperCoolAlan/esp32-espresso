@@ -1,0 +1,20 @@
+#pragma experiment("TRAITS")
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component HI_LINK_HLK_PM01_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C209903", date="2026-01-19T05:06:30.436732+00:00", checksum="c8672bb860b091ded1dad54b53a75bdb49ab6575937e8fb5e88038f50198e038">
+
+    trait is_atomic_part<manufacturer="HI-LINK", partnumber="HLK-PM01", footprint="PWRM-TH_HLK-PM01.kicad_mod", symbol="HLK-PM01.kicad_sym", model="PWRM-TH_L34.0-W20.0-H15.0.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C209903", manufacturer="HI-LINK", partno="HLK-PM01">
+    trait has_designator_prefix<prefix="U">
+
+    # pins
+    signal AC ~ pin 1
+    AC ~ pin 2
+    signal VOneg ~ pin 3
+    signal VOpos ~ pin 4

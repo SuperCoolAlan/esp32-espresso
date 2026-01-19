@@ -1,0 +1,493 @@
+(kicad_symbol_lib
+    (version 1)
+    (generator "faebryk")
+    (symbol "BH254V-20P"
+        (property "Reference" "CN"
+            (id 0)
+            (at 0 15.24 0)
+            (effects
+                (font
+                    (size 1.27 1.27)
+                )
+                (hide no)
+            )
+        )
+        (property "Value" "BH254V-20P"
+            (id 1)
+            (at 0 -17.78 0)
+            (effects
+                (font
+                    (size 1.27 1.27)
+                )
+                (hide no)
+            )
+        )
+        (property "Footprint" "C492444:CONN-TH_20P-P2.54_BH254V-20P"
+            (id 2)
+            (at 0 -20.32 0)
+            (effects
+                (font
+                    (size 1.27 1.27)
+                )
+                (hide yes)
+            )
+        )
+        (property "Datasheet" "https://lcsc.com/product-detail/IDC-Connectors_XFCN-BH254V-20P_C492444.html"
+            (id 3)
+            (at 0 -22.86 0)
+            (effects
+                (font
+                    (size 1.27 1.27)
+                )
+                (hide yes)
+            )
+        )
+        (property "LCSC Part" "C492444"
+            (id 5)
+            (at 0 -25.4 0)
+            (effects
+                (font
+                    (size 1.27 1.27)
+                )
+                (hide yes)
+            )
+        )
+        (property "checksum" "5d39fbcfc902dc00965cb17c8e681332f28a1bfbe27ec36119daddefa90f1162"
+            (at 0 0 0)
+            (effects
+                (font
+                    (size 0 0)
+                )
+                (hide yes)
+            )
+        )
+        (in_bom yes)
+        (on_board yes)
+        (symbol "BH254V-20P_0_1"
+            (circle
+                (center -3.81 11.43)
+                (end -3.43 11.43)
+                (stroke
+                    (width 0)
+                    (type default)
+                    (color 0 0 0 0)
+                )
+                (fill
+                    (type none)
+                )
+            )
+            (rectangle
+                (start -5.08 12.7)
+                (end 5.08 -15.24)
+                (stroke
+                    (width 0)
+                    (type default)
+                    (color 0 0 0 0)
+                )
+                (fill
+                    (type background)
+                )
+            )
+            (pin unspecified line
+                (at 7.62 10.16 180)
+                (length 2.54)
+                (name "2"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "2"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at -7.62 -12.7 0)
+                (length 2.54)
+                (name "19"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "19"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at 7.62 7.62 180)
+                (length 2.54)
+                (name "4"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "4"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at -7.62 -10.16 0)
+                (length 2.54)
+                (name "17"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "17"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at 7.62 5.08 180)
+                (length 2.54)
+                (name "6"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "6"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at -7.62 -7.62 0)
+                (length 2.54)
+                (name "15"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "15"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at 7.62 2.54 180)
+                (length 2.54)
+                (name "8"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "8"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at -7.62 -5.08 0)
+                (length 2.54)
+                (name "13"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "13"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at 7.62 0 180)
+                (length 2.54)
+                (name "10"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "10"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at -7.62 -2.54 0)
+                (length 2.54)
+                (name "11"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "11"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at 7.62 -2.54 180)
+                (length 2.54)
+                (name "12"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "12"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at -7.62 0 0)
+                (length 2.54)
+                (name "9"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "9"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at 7.62 -5.08 180)
+                (length 2.54)
+                (name "14"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "14"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at -7.62 2.54 0)
+                (length 2.54)
+                (name "7"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "7"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at 7.62 -7.62 180)
+                (length 2.54)
+                (name "16"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "16"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at -7.62 5.08 0)
+                (length 2.54)
+                (name "5"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "5"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at 7.62 -10.16 180)
+                (length 2.54)
+                (name "18"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "18"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at -7.62 7.62 0)
+                (length 2.54)
+                (name "3"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "3"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at 7.62 -12.7 180)
+                (length 2.54)
+                (name "20"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "20"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at -7.62 10.16 0)
+                (length 2.54)
+                (name "1"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "1"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+        )
+    )
+)

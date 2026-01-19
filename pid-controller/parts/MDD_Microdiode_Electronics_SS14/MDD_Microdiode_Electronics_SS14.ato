@@ -1,0 +1,20 @@
+#pragma experiment("TRAITS")
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component MDD_Microdiode_Electronics_SS14_package:
+    """SS14"""
+
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C2480", date="2026-01-19T05:00:58.785555+00:00", checksum="cc2128c5f422544fffc73981da5475e1dcce20b5da5c9b3fa997ad3f6e33fabf">
+
+    trait is_atomic_part<manufacturer="MDD（Microdiode Electronics）", partnumber="SS14", footprint="SMA_L4.2-W2.6-LS5.0-RD_1.kicad_mod", symbol="SS14.kicad_sym", model="SMA_L4.2-W2.6-LS5.0-RD_1.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2480", manufacturer="MDD（Microdiode Electronics）", partno="SS14">
+    trait has_designator_prefix<prefix="D">
+
+    # pins
+    signal A ~ pin 2
+    signal K ~ pin 1

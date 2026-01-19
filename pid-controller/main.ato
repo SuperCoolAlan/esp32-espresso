@@ -3,12 +3,12 @@
 ESP32-S3 PID Controller for Rancilio Silvia Espresso Machine
 
 Features:
+- On-board AC-DC converter (100-240V AC → 5V DC)
 - MAX31855 K-type thermocouple for boiler temperature
 - Control output for external panel-mount SSR (e.g., Fotek SSR-25DA 25A)
 - Pressure sensor input with voltage divider (5V -> 3.3V)
 - Status LEDs (OK, Heating, Error)
-- 5V input with 3.3V LDO regulation
-- Screw terminal connectors for all external connections
+- 3.3V LDO regulation for ESP32 and peripherals
 
 Note: Use an external panel-mount SSR with heatsink for the AC heater.
       This provides better thermal management for 1000-1500W loads.
@@ -16,9 +16,9 @@ Note: Use an external panel-mount SSR with heatsink for the AC heater.
 
 import ElectricPower, Resistor, Capacitor
 
-from "components/basics.ato" import LDO_3V3, SSR_Driver
+from "components/basics.ato" import AC_DC_5V, LDO_3V3, SSR_Driver, USBHeader
 from "components/basics.ato" import LEDIndicatorGreen, LEDIndicatorOrange, LEDIndicatorRed
-from "components/basics.ato" import PowerConnector, ThermocoupleConnector, SSRControlConnector, SensorConnector
+from "components/basics.ato" import ACInputConnector, ThermocoupleConnector, SSRControlConnector, SensorConnector
 from "components/esp32s3.ato" import ESP32S3Module
 from "components/max31855.ato" import MAX31855Module
 
@@ -34,9 +34,20 @@ module PIDController:
     assert power_5v.voltage within 5V +/- 10%
     assert power_3v3.voltage within 3.3V +/- 5%
 
-    # ===== POWER INPUT CONNECTOR =====
-    j_power = new PowerConnector
-    j_power.power ~ power_5v
+    # ===== AC POWER INPUT =====
+    j_ac = new ACInputConnector
+
+    # AC-DC converter (100-240V AC → 5V DC)
+    ac_dc = new AC_DC_5V
+    j_ac.ac_line ~ ac_dc.ac_line
+    j_ac.ac_neutral ~ ac_dc.ac_neutral
+    ac_dc.power_out ~ power_5v
+
+    # ===== USB PROGRAMMING INTERFACE =====
+    # 4-pin USB header for programming/debugging
+    # Schottky diode allows USB power when AC is off, prevents backfeed when AC is on
+    j_usb = new USBHeader
+    j_usb.power ~ power_5v
 
     # ===== VOLTAGE REGULATOR =====
     # LDO_3V3 includes input/output caps internally
@@ -48,6 +59,10 @@ module PIDController:
     # Includes EN circuit, boot pullup, and decoupling
     mcu = new ESP32S3Module
     mcu.power ~ power_3v3
+
+    # USB data connections for programming
+    j_usb.usb_dp ~ mcu.usb_dp
+    j_usb.usb_dm ~ mcu.usb_dm
 
     # ===== THERMOCOUPLE INTERFACE =====
     thermocouple = new MAX31855Module

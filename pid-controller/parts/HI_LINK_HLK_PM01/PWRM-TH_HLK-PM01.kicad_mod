@@ -1,0 +1,215 @@
+(footprint "HI_LINK_HLK_PM01:PWRM-TH_HLK-PM01"
+    (layer "F.Cu")
+    (descr "")
+    (version 20241229)
+    (generator "faebryk")
+    (generator_version "v5")
+    (tedit "5DC5F6A4")
+    (property "Reference" "REF**"
+        (at 0 -11.7 0)
+        (layer "F.SilkS")
+        (hide no)
+        (uuid "0d4e5a2e-c4f4-46cd-8ba0-ed248d1a2f3d")
+        (effects
+            (font
+                (size 1 1)
+                (thickness 0.15)
+            )
+        )
+    )
+    (property "Value" "PWRM-TH_HLK-PM01"
+        (at 0 11.7 0)
+        (layer "F.Fab")
+        (hide no)
+        (uuid "ab13a861-ac52-472f-b140-b6073ef3c18b")
+        (effects
+            (font
+                (size 1 1)
+                (thickness 0.15)
+            )
+        )
+    )
+    (property "checksum" "4fb218320af4e24fa15d255aa598256c8abd57b7130b49cfcf54e8406d6dd36e"
+        (at 0 0 0)
+        (layer "User.9")
+        (hide no)
+        (uuid "c44953b9-52cf-4c40-844e-c3a22a547522")
+        (effects
+            (font
+                (size 0.125 0.125)
+                (thickness 0.01875)
+            )
+            (hide yes)
+        )
+    )
+    (attr through_hole)
+    (fp_line
+        (start -17.15 -10.16)
+        (end 17.14 -10.16)
+        (stroke
+            (width 3)
+            (type solid)
+        )
+        (layer "F.Fab")
+        (uuid "b9f07911-9f03-416b-aee1-ebe83777285f")
+    )
+    (fp_line
+        (start 17.14 -10.16)
+        (end 17.14 10.16)
+        (stroke
+            (width 3)
+            (type solid)
+        )
+        (layer "F.Fab")
+        (uuid "418d8c0e-95e0-46ee-a446-2d9f71eccaa4")
+    )
+    (fp_line
+        (start 17.14 10.16)
+        (end -17.15 10.16)
+        (stroke
+            (width 3)
+            (type solid)
+        )
+        (layer "F.Fab")
+        (uuid "121f31b2-a6a6-436f-9959-8c64c06b91e1")
+    )
+    (fp_line
+        (start -17.15 -10.16)
+        (end -17.15 -10.16)
+        (stroke
+            (width 3)
+            (type solid)
+        )
+        (layer "F.Fab")
+        (uuid "4d0a7bda-c0cc-44f9-857d-0ffea35fc6b8")
+    )
+    (fp_circle
+        (center -17 -10)
+        (end -16.97 -10)
+        (stroke
+            (width 0.06)
+            (type solid)
+        )
+        (fill no)
+        (layer "F.Fab")
+        (uuid "450158c5-647e-49cb-adad-ca72a79265d8")
+    )
+    (fp_circle
+        (center -14.73 -3.68)
+        (end -14.53 -3.68)
+        (stroke
+            (width 0.4)
+            (type solid)
+        )
+        (fill no)
+        (layer "Cmts.User")
+        (uuid "364f7376-c91e-44e4-aa82-0cb148251248")
+    )
+    (fp_circle
+        (center -14.7 -2.5)
+        (end -14.5 -2.5)
+        (stroke
+            (width 0.4)
+            (type solid)
+        )
+        (fill no)
+        (layer "F.Fab")
+        (uuid "b0a82f96-4b35-4ca2-a6f9-4e44fb333031")
+    )
+    (fp_circle
+        (center -14.7 2.5)
+        (end -14.5 2.5)
+        (stroke
+            (width 0.4)
+            (type solid)
+        )
+        (fill no)
+        (layer "F.Fab")
+        (uuid "11867c16-2c56-4a0f-821d-64330d5a4766")
+    )
+    (fp_circle
+        (center 14.7 -7.7)
+        (end 14.9 -7.7)
+        (stroke
+            (width 0.4)
+            (type solid)
+        )
+        (fill no)
+        (layer "F.Fab")
+        (uuid "8c93ac19-fab2-4dd6-9665-2a31b4e7f361")
+    )
+    (fp_circle
+        (center 14.7 7.7)
+        (end 14.9 7.7)
+        (stroke
+            (width 0.4)
+            (type solid)
+        )
+        (fill no)
+        (layer "F.Fab")
+        (uuid "14c49bae-f148-4c15-bd37-0011a7a2d439")
+    )
+    (fp_text user "%R"
+        (at 0 0 0)
+        (layer "F.Fab")
+        (uuid "85dabb31-74be-4394-b819-638346b5d5a2")
+        (effects
+            (font
+                (size 1 1)
+                (thickness 0.15)
+            )
+        )
+        (unlocked no)
+    )
+    (fp_text user "${REFERENCE}"
+        (at 0 -11.7 0)
+        (layer "F.SilkS")
+        (uuid "0d4e5a2e-c4f4-46cd-8ba0-ed248d1a2f3d")
+        (effects
+            (font
+                (size 1 1)
+                (thickness 0.15)
+            )
+        )
+        (unlocked no)
+    )
+    (pad "4" thru_hole circle
+        (at 14.7 7.7 0)
+        (size 2 2)
+        (drill 1.1999975999999999)
+        (layers "*.Cu" "*.Mask")
+        (uuid "a69d57eb-3f26-4ec7-961d-d12a09484661")
+    )
+    (pad "3" thru_hole circle
+        (at 14.7 -7.7 0)
+        (size 2 2)
+        (drill 1.1999975999999999)
+        (layers "*.Cu" "*.Mask")
+        (uuid "b4750801-bea1-432b-b506-28ac8d7db1a6")
+    )
+    (pad "2" thru_hole circle
+        (at -14.7 2.5 0)
+        (size 2 2)
+        (drill 1.1999975999999999)
+        (layers "*.Cu" "*.Mask")
+        (uuid "3a3c44a8-42c3-4be2-b801-a463810b939d")
+    )
+    (pad "1" thru_hole circle
+        (at -14.7 -2.5 0)
+        (size 2 2)
+        (drill 1.1999975999999999)
+        (layers "*.Cu" "*.Mask")
+        (uuid "ddd8e3f7-fda8-4fb2-ae5c-03bf7d5f04ac")
+    )
+    (model "${KIPRJMOD}/../../parts/HI_LINK_HLK_PM01/PWRM-TH_L34.0-W20.0-H15.0.step"
+        (offset
+            (xyz 0 0 0)
+        )
+        (scale
+            (xyz 1 1 1)
+        )
+        (rotate
+            (xyz 0 0 0)
+        )
+    )
+)

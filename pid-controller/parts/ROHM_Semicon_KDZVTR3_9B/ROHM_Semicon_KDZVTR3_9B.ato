@@ -1,0 +1,18 @@
+#pragma experiment("TRAITS")
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component ROHM_Semicon_KDZVTR3_9B_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C209587", date="2026-01-19T05:00:54.387325+00:00", checksum="70e0301f84e4712b3551aa75fa851e6b8b5a9fdec343864d291e9ad4bdc6fa99">
+
+    trait is_atomic_part<manufacturer="ROHM Semicon", partnumber="KDZVTR3.9B", footprint="SOD-123FL_L2.6-W1.6-LS3.5-RD.kicad_mod", symbol="KDZVTR3.9B.kicad_sym", model="SOD-123FL_L2.6-W1.6-LS3.5-RD.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C209587", manufacturer="ROHM Semicon", partno="KDZVTR3.9B">
+    trait has_designator_prefix<prefix="D">
+
+    # pins
+    signal A ~ pin 2
+    signal K ~ pin 1

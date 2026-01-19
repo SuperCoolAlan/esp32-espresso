@@ -1,0 +1,173 @@
+(kicad_symbol_lib
+    (version 1)
+    (generator "faebryk")
+    (symbol "HLK-PM01"
+        (property "Reference" "U"
+            (id 0)
+            (at 0 6.35 0)
+            (effects
+                (font
+                    (size 1.27 1.27)
+                )
+                (hide no)
+            )
+        )
+        (property "Value" "HLK-PM01"
+            (id 1)
+            (at 0 -6.35 0)
+            (effects
+                (font
+                    (size 1.27 1.27)
+                )
+                (hide no)
+            )
+        )
+        (property "Footprint" "C209903:PWRM-TH_HLK-PM01"
+            (id 2)
+            (at 0 -8.89 0)
+            (effects
+                (font
+                    (size 1.27 1.27)
+                )
+                (hide yes)
+            )
+        )
+        (property "Datasheet" "https://lcsc.com/product-detail/New-Arrivals_HI-LINK-HLK-PM01_C209903.html"
+            (id 3)
+            (at 0 -11.43 0)
+            (effects
+                (font
+                    (size 1.27 1.27)
+                )
+                (hide yes)
+            )
+        )
+        (property "LCSC Part" "C209903"
+            (id 5)
+            (at 0 -13.97 0)
+            (effects
+                (font
+                    (size 1.27 1.27)
+                )
+                (hide yes)
+            )
+        )
+        (property "checksum" "cdd6110cf2826b155251ac48412e112541b05e1a7e7ec5aa8768b91391af72e1"
+            (at 0 0 0)
+            (effects
+                (font
+                    (size 0 0)
+                )
+                (hide yes)
+            )
+        )
+        (in_bom yes)
+        (on_board yes)
+        (symbol "HLK-PM01_0_1"
+            (circle
+                (center -5.08 2.54)
+                (end -4.7 2.54)
+                (stroke
+                    (width 0)
+                    (type default)
+                    (color 0 0 0 0)
+                )
+                (fill
+                    (type none)
+                )
+            )
+            (rectangle
+                (start -6.35 3.81)
+                (end 6.35 -3.81)
+                (stroke
+                    (width 0)
+                    (type default)
+                    (color 0 0 0 0)
+                )
+                (fill
+                    (type background)
+                )
+            )
+            (pin unspecified line
+                (at -8.89 1.27 0)
+                (length 2.54)
+                (name "AC"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "1"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at -8.89 -1.27 0)
+                (length 2.54)
+                (name "AC"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "2"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at 8.89 1.27 180)
+                (length 2.54)
+                (name "-VO"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "3"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+            (pin unspecified line
+                (at 8.89 -1.27 180)
+                (length 2.54)
+                (name "+VO"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+                (number "4"
+                    (effects
+                        (font
+                            (size 1.27 1.27)
+                        )
+                        (hide no)
+                    )
+                )
+            )
+        )
+    )
+)
