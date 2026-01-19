@@ -165,24 +165,55 @@ component SS14:
     signal cathode ~ pin 2
 
 
-# ===== USB CONNECTOR =====
-component PinHeader4P:
-    """4-position pin header - 2.54mm pitch"""
-    lcsc_id = "C492444"
+# ===== USB TYPE-C CONNECTOR =====
+component USB_C_16P:
+    """USB Type-C connector - 16-pin SMD (SHOU HAN TYPE-C16PIN)
 
-    signal p1 ~ pin 1
-    signal p2 ~ pin 2
-    signal p3 ~ pin 3
-    signal p4 ~ pin 4
+    Basic USB 2.0 Type-C receptacle
+    Pin mapping matches LCSC C393939 footprint
+    """
+    lcsc_id = "C393939"
+
+    # Power pins (combined pads)
+    signal vbus ~ pin A4B9
+    vbus ~ pin B4A9
+
+    # Ground pins (combined pads)
+    signal gnd ~ pin A1B12
+    gnd ~ pin B1A12
+
+    # USB 2.0 data pins
+    signal dp1 ~ pin A6
+    signal dp2 ~ pin B6
+    signal dm1 ~ pin A7
+    signal dm2 ~ pin B7
+
+    # CC pins for cable orientation detection
+    signal cc1 ~ pin A5
+    signal cc2 ~ pin B5
+
+    # SBU pins (not used for USB 2.0)
+    signal sbu1 ~ pin A8
+    signal sbu2 ~ pin B8
+
+    # Shield/shell pins
+    signal shell ~ pin 1
+    shell ~ pin 2
+    shell ~ pin 3
+    shell ~ pin 4
 
 
-module USBHeader:
-    """4-pin USB header for programming/debugging
+module USBTypeC:
+    """USB Type-C connector with CC resistors for UFP (device) mode
 
-    Pinout: VBUS, D-, D+, GND
-    Use with USB-to-header cable for programming.
+    Includes:
+    - 5.1k pulldown resistors on CC1/CC2 for device mode detection
+    - Schottky diode on VBUS for power OR-ing with AC-DC supply
+    - ESD protection via shield grounding
 
-    Includes Schottky diode on VBUS for power OR-ing with AC-DC supply.
+    The Schottky diode allows:
+    - USB power when AC-DC is off (for programming without AC)
+    - No backfeed to USB when AC-DC is on
     """
     # Power output (through Schottky diode)
     power = new ElectricPower
@@ -192,19 +223,35 @@ module USBHeader:
     signal usb_dm
 
     # The connector
-    conn = new PinHeader4P
+    conn = new USB_C_16P
 
     # Schottky diode on VBUS for power OR-ing
     d_vbus = new SS14
-    conn.p1 ~ d_vbus.anode      # VBUS in
-    d_vbus.cathode ~ power.hv   # To 5V rail (with diode drop)
+    conn.vbus ~ d_vbus.anode
+    d_vbus.cathode ~ power.hv
 
-    # USB data
-    conn.p2 ~ usb_dm            # D-
-    conn.p3 ~ usb_dp            # D+
+    # Ground connections
+    conn.gnd ~ power.lv
 
-    # Ground
-    conn.p4 ~ power.lv          # GND
+    # Shield to ground for ESD protection
+    conn.shell ~ power.lv
+
+    # CC resistors (5.1k pulldown for UFP/device mode)
+    r_cc1 = new Resistor
+    r_cc1.resistance = 5.1kohm +/- 1%
+    r_cc1.package = "0402"
+    conn.cc1 ~> r_cc1 ~> power.lv
+
+    r_cc2 = new Resistor
+    r_cc2.resistance = 5.1kohm +/- 1%
+    r_cc2.package = "0402"
+    conn.cc2 ~> r_cc2 ~> power.lv
+
+    # USB 2.0 data (directly connected - both sides tied in connector)
+    conn.dp1 ~ usb_dp
+    conn.dp2 ~ usb_dp
+    conn.dm1 ~ usb_dm
+    conn.dm2 ~ usb_dm
 
 
 # ===== LED COMPONENTS =====

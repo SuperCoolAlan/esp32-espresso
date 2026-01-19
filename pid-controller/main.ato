@@ -16,7 +16,7 @@ Note: Use an external panel-mount SSR with heatsink for the AC heater.
 
 import ElectricPower, Resistor, Capacitor
 
-from "components/basics.ato" import AC_DC_5V, LDO_3V3, SSR_Driver, USBHeader
+from "components/basics.ato" import AC_DC_5V, LDO_3V3, SSR_Driver, USBTypeC
 from "components/basics.ato" import LEDIndicatorGreen, LEDIndicatorOrange, LEDIndicatorRed
 from "components/basics.ato" import ACInputConnector, ThermocoupleConnector, SSRControlConnector, SensorConnector
 from "components/esp32s3.ato" import ESP32S3Module
@@ -44,9 +44,9 @@ module PIDController:
     ac_dc.power_out ~ power_5v
 
     # ===== USB PROGRAMMING INTERFACE =====
-    # 4-pin USB header for programming/debugging
+    # USB Type-C for programming/debugging
     # Schottky diode allows USB power when AC is off, prevents backfeed when AC is on
-    j_usb = new USBHeader
+    j_usb = new USBTypeC
     j_usb.power ~ power_5v
 
     # ===== VOLTAGE REGULATOR =====
