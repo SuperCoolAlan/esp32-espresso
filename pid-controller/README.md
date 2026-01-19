@@ -12,6 +12,7 @@ A PID temperature controller board designed for the Rancilio Silvia espresso mac
 - [ ] **Reset button** - useful for development
 - [ ] **Mounting holes** - for securing PCB in enclosure
 - [ ] **Test points** - on key signals for debugging
+- [ ] **Fiducials** - alignment markers for pick and place assembly
 
 ## Board Overview
 
