@@ -2,6 +2,17 @@
 
 A PID temperature controller board designed for the Rancilio Silvia espresso machine, built with [atopile](https://atopile.io).
 
+## TODO
+
+- [ ] **Fuse on AC input** - protects against shorts/overcurrent
+- [ ] **MOV/TVS on AC input** - surge protection from mains spikes
+- [ ] **TVS diodes on USB D+/D-** - ESD protection (e.g., USBLC6-2)
+- [ ] **TVS on thermocouple inputs** - TC wires run outside enclosure
+- [ ] **Power LED** - indicates board is powered
+- [ ] **Reset button** - useful for development
+- [ ] **Mounting holes** - for securing PCB in enclosure
+- [ ] **Test points** - on key signals for debugging
+
 ## Board Overview
 
 This board provides closed-loop temperature control for an espresso machine boiler using a K-type thermocouple and an external solid-state relay.
